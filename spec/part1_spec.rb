@@ -7,7 +7,6 @@ describe 'Ruby intro part 1' do
     it 'should be defined' do
       expect { sum([1, 3, 4]) }.not_to raise_error
     end
-
     it 'returns correct sum [20 points]', points: 20 do
       expect(sum([1, 2, 3, 4, 5])).to be_a_kind_of Integer
       expect(sum([1, 2, 3, 4, 5])).to eq(15)
@@ -20,6 +19,10 @@ describe 'Ruby intro part 1' do
       expect(sum([])).to be_zero
     end
   end
+  
+def sum(array)
+    array.inject(0, :+)
+end
 
   describe '#max_2_sum' do
     it 'should be defined' do
@@ -39,6 +42,9 @@ describe 'Ruby intro part 1' do
       expect(max_2_sum([3])).to eq(3)
     end
   end
+def max_2_sum array
+  sum(array.sort.last(2))
+end
 
   describe '#sum_to_n' do
     it 'should be defined' do
@@ -69,6 +75,17 @@ describe 'Ruby intro part 1' do
     it 'returns false for an empty array [5 points]', points: 5 do
       expect(sum_to_n?([], 0)).to be false
       expect(sum_to_n?([], 7)).to be false
+    end
+  end
+  
+  def sum_to_n? array, n
+    if array.empty?
+      return false
+    else
+      while member = array.pop do
+        return true if array.member?(n - member)
+      end
+      return false
     end
   end
 end
