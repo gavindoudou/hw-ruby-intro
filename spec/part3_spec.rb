@@ -50,3 +50,16 @@ describe 'BookInStock' do
     end
   end
 end
+
+class BookInStock
+  attr_accessor :isbn, :price
+  def initialize isbn, price
+    raise ArgumentError if price <= 0 || isbn.empty?
+    @isbn = isbn
+    @price = price
+  end
+  
+  def price_as_string
+    format("$%.2f",@price)
+  end
+end
