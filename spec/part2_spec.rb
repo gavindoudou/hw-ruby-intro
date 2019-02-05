@@ -15,6 +15,10 @@ describe '#hello' do
   end
 end
 
+def hello name
+  return 'Hello, '+ name
+end
+
 describe '#starts_with_consonant?' do
   it 'should be defined' do
     expect { starts_with_consonant?('d') }.not_to raise_error#::NoMethodError)
@@ -39,14 +43,22 @@ describe '#starts_with_consonant?' do
   end
 end
 
+def starts_with_consonant? s
+  if s =~ /^[bcdfhjklmnpqrstvwxyzBCDFHJKLMNPQRSTVWXYZ]/
+    return true
+  else
+    return false
+  end
+end
+
 describe '#binary_multiple_of_4?' do
   it 'should be defined' do
     expect { binary_multiple_of_4?('yes') }.not_to raise_error#::NoMethodError)
   end
-  it 'classifies valid binary numbers [30 points]' , points: 30 do
+   it 'classifies valid binary numbers [30 points]' , points: 30 do
     %w[1010101010100 0101010101010100 100 0].each do |string|
       expect(binary_multiple_of_4?(string)).to be_truthy,  "Incorrect results for input: \"#{string}\""
-    end
+      end
     %w[101 1000000000001].each do |string|
       expect(binary_multiple_of_4?(string)).not_to be_truthy,  "Incorrect results for input: \"#{string}\""
     end
@@ -56,3 +68,13 @@ describe '#binary_multiple_of_4?' do
     expect(binary_multiple_of_4?('')).to be_falsy, 'The empty string is not a valid binary number!'
   end
 end
+
+def binary_multiple_of_4? str
+  if str =~ /[^01]/
+    return false
+  else
+    return str =~/(00|0)$/
+  end
+end
+
+
